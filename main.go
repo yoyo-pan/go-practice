@@ -17,7 +17,7 @@ func main() {
 		port = "8080"
 		log.Printf("Defaulting to port %s", port)
 	}
-	endPoint := fmt.Sprintf("%s", port)
+	endPoint := fmt.Sprintf(":%s", port)
 
 	routersInit := routers.InitRouter()
 
@@ -31,5 +31,8 @@ func main() {
 
 	// Listen and serve on defined port
 	log.Printf("Listening on port %s", port)
-	server.ListenAndServe()
+	err := server.ListenAndServe()
+	if err != nil {
+		panic(err)
+	}
 }
